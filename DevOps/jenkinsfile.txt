@@ -1,0 +1,23 @@
+pipeline {
+ agent any
+ tools {
+ maven 'Maven'
+ jdk 'Java 17'
+ }
+ stages {
+ stage('Checkout') {
+ steps {
+ git branch: 'master', credentialsId: 'devgitpass', url: 'https://github.com/Aadarshshrivastava/devops.git'
+ }
+ }
+ stage('Build') {
+ steps {
+ script {
+ bat 'mvn clean package'
+ }
+ }
+
+ }
+
+ }
+}
